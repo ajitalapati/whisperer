@@ -1,7 +1,7 @@
 export default class hwService{
     // Insert an article
     public static async continueConv(user: string, conversee: string, conv: string[]): Promise<string> {
-        const rawResponse = await fetch('http://127.0.0.1:5000/login', {
+        const rawResponse = await fetch('http://127.0.0.1:5000/new', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',

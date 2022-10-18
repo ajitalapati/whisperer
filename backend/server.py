@@ -10,7 +10,7 @@ app = Flask(__name__)
 def home():
    return {"d": "welcome to whisper"}
 
-@app.route('/login',methods = ['POST', 'GET'])
+@app.route('/new',methods = ['POST', 'GET'])
 def login():
    if request.method == 'POST':
       r = request.json
