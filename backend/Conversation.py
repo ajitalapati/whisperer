@@ -20,8 +20,3 @@ class Conversation:
             )
         return modelInput + f"\n{self.conversee}: "
 
-exConv = ['The following is a conversation between Ajit Alapati and Julius Caesar.', "Julius, What would you do if you are Vladimir Putin Right now?"]
-c = Conversation("Ajit Alapati", "Julius Caesar", exConv)
-service = OpenAIService(openai_key)
-
-print(service.openAIPost(c))

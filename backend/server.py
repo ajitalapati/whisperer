@@ -13,9 +13,9 @@ def home():
 @app.route('/login',methods = ['POST', 'GET'])
 def login():
    if request.method == 'POST':
-      r = request.get_json()
+      r = request.json
       c = Conversation(r["user"], r["conversee"], r['conversation'])
-      return openAIService.openAIPost(c)
+      return {"res": openAIService.openAIPost(c)}
    else:
       user = request.args.get('nm')
 

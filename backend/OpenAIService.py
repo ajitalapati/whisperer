@@ -7,10 +7,10 @@ class OpenAIService:
     def openAIPost(self, conv):
         openai.api_key = self.api_key    
         res = openai.Completion.create(
-            model="text-curie-001",
+            model="text-babbage-001",
             prompt=conv.getModelInput(),
             temperature=0.9,
-            max_tokens=100,
+            max_tokens=50,
             top_p=1,
             frequency_penalty=0,
             presence_penalty=0.6,
