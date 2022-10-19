@@ -1,10 +1,12 @@
 from flask import Flask, redirect, url_for, request, render_template
+from flask_cors import CORS
 from Conversation import *
 from OpenAIService import *
 from constants import openai_key
 
 openAIService = OpenAIService(openai_key)
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/")
 def home():

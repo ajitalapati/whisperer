@@ -10,7 +10,7 @@ class OpenAIService:
             model="text-babbage-001",
             prompt=conv.getModelInput(),
             temperature=0.9,
-            max_tokens=50,
+            max_tokens=100,
             top_p=1,
             frequency_penalty=0,
             presence_penalty=0.6,

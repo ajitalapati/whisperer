@@ -2,12 +2,12 @@ import React, {useState, useEffect} from 'react'
 import Bubble from './Bubble'
 import { TextField, List, Button, Grid, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import hwService from "../services/hwService";
+import hwService from "../../services/hwService";
 
 export default function Conv() {
     const [currentInput, setCurrentInput] = useState<string>("");
     const [user, setUser] = useState<string>("Ajit Alapati");
-    const [conversee, setConversee] = useState<string>("Albert Einstein");
+    const [conversee, setConversee] = useState<string>("Julius Caesar");
     const initLine: string = "The following is a conversation between ".concat(user).concat(" and ").concat(conversee).concat(".");
     const [conv, setConv] = useState<string[]>([initLine]);
 
@@ -25,17 +25,26 @@ export default function Conv() {
     const map = [user, conversee];
     return (
         <>
+        <div
+            style={{
+            display: 'flex',
+            position: "absolute",
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+        }}>
             <Grid
                 container
                 spacing={1}
                 direction="column"
                 alignItems="left"
                 justifyContent="left"
-                style={{ minHeight: '100vh' }}
+                style={{ minHeight: '100vh', width:"60%" }}
             >
                 <Grid item>
                     <Typography
                         variant="h4"
+                        sx={{ fontWeight: '3px' }}
                     >{initLine}</Typography>
                     
                 </Grid>
@@ -73,6 +82,7 @@ export default function Conv() {
                     </Grid>
                 </Grid>
             </Grid>
+        </div>
         </>
   )
 }
