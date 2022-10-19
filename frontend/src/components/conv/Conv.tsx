@@ -3,11 +3,18 @@ import Bubble from './Bubble'
 import { TextField, List, Button, Grid, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import hwService from "../../services/hwService";
+import { useLocation } from "react-router-dom";
 
-export default function Conv() {
+interface ConvProps{
+    user: string;
+}
+
+export default function Conv({user}: ConvProps) {
+    const location = useLocation();
+    const { conversee } = location.state;
     const [currentInput, setCurrentInput] = useState<string>("");
-    const [user, setUser] = useState<string>("Ajit Alapati");
-    const [conversee, setConversee] = useState<string>("Julius Caesar");
+    //const [user, setUser] = useState<string>("Ajit Alapati");
+    //const [conversee, setConversee] = useState<string>("Julius Caesar");
     const initLine: string = "The following is a conversation between ".concat(user).concat(" and ").concat(conversee).concat(".");
     const [conv, setConv] = useState<string[]>([initLine]);
 
@@ -61,6 +68,7 @@ export default function Conv() {
                 <Grid container spacing={0.5} justifyContent="flex-end">
                     <Grid item xs={8.8}>
                         <TextField 
+                            autoFocus
                             id="outlined-basic" 
                             label="Write a message..." 
                             variant="outlined" fullWidth

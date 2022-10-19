@@ -19,7 +19,7 @@ const people: OptionProps[] = [
       name: "Aristotle",
       imgURL: "https://static01.nyt.com/images/2016/05/27/world/27ARISTOTLE/27ARISTOTLE-superJumbo.jpg",
       description: "Aristotle (384–322 BC) was a Greek philosopher and polymath during the Classical period in Ancient Greece. Taught by Plato, he was the founder of the Peripatetic school of philosophy within the Lyceum and the wider Aristotelian tradition. His writings cover many subjects including physics, biology, zoology, metaphysics, logic, ethics, aesthetics, poetry, theatre, music, rhetoric, psychology, linguistics, economics, politics, meteorology, geology, and government. Aristotle provided a complex synthesis of the various philosophies existing prior to him. It was above all from his teachings that the West inherited its intellectual lexicon, as well as problems and methods of inquiry. As a result, his philosophy has exerted a unique influence on almost every form of knowledge in the West and it continues to be a subject of contemporary philosophical discussion."
-  }
+  },
 ];
 
 export default function OptionPage() {
@@ -37,11 +37,11 @@ export default function OptionPage() {
               direction="row"
               alignItems="left"
               justifyContent="center"
-              style={{ minHeight: '100vh', width:"100%", margin:"0" }}
+              style={{ minHeight: '100vh', width:"70%", margin:"auto" }}
               >
               {people.map((x: OptionProps) => {
                   return (
-                    <Grid item xs={3}>
+                    <Grid item xs={4}>
                       <Option
                         name={x.name}
                         imgURL={x.imgURL}
