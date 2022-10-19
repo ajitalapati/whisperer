@@ -1,13 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Grid } from '@mui/material'
 import Option from './Option'
 import { OptionProps } from './Option';
 import Typography from '@mui/material/Typography';
 import { constants } from "../../constants"
+import { UserContext } from '../../App';
 
 const people: OptionProps[] = constants.peopleOptions;
 
 export default function OptionPage() {
+  const user = useContext(UserContext)
   return (
     <>
         <Grid container direction="column" alignItems="left" justifyContent="right" spacing={4}>

@@ -1,9 +1,9 @@
 import React from 'react'
-import { Grid, Typography, Button } from '@mui/material'
+import { Grid, Typography, Button, Input } from '@mui/material'
 import { constants } from '../constants'
 import { Link } from 'react-router-dom'
 
-export default function LandingPage() {
+export default function LandingPage({setUserCallback}: any) {
   return (
     <>
     <Grid container direction="column" alignItems="center" justifyContent="left" spacing={4}>
@@ -14,6 +14,16 @@ export default function LandingPage() {
             <Typography component="h1" variant="h4" align="center" color="textPrimary">
                 A way to converse with History's greatest minds.
             </Typography>
+        </Grid>
+        <Grid item>
+            <Typography variant='h6'>
+                To begin, please enter your name:
+            </Typography>
+        </Grid>
+        <Grid item>
+            <Input placeholder="What's your name?" style={{textAlign:"center"}} onChange={(e)=>{
+                setUserCallback(e.target.value)
+            }}/>
         </Grid>
         <Grid item>
             <Link to="/options" style={{textDecoration: 'none'}}>
