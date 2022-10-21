@@ -11,7 +11,7 @@ interface ConvProps{
 
 export default function Conv({user}: ConvProps) {
     const location = useLocation();
-    const { conversee } = location.state;
+    const { conversee, imgURL } = location.state;
     const [currentInput, setCurrentInput] = useState<string>("");
     //const [user, setUser] = useState<string>("Ajit Alapati");
     //const [conversee, setConversee] = useState<string>("Julius Caesar");
@@ -30,6 +30,7 @@ export default function Conv({user}: ConvProps) {
         setConv([...conv, ...add])
     }
     const map = [user, conversee];
+    const imgOption = ["https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png", imgURL];
     return (
         <>
         <div
@@ -59,7 +60,7 @@ export default function Conv({user}: ConvProps) {
                     <List sx={{ bgcolor: 'background.paper'}}>
                         {
                         conv.slice(1).map((x: string, i:number) => {
-                            return <Bubble name={map[i%2]} dialogue={x}/>;
+                            return <Bubble name={map[i%2]} dialogue={x} imgURL={imgOption[i%2]}/>;
                         })
                         }
                     </List>

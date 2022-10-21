@@ -1,14 +1,18 @@
 import React from 'react'
-import { ListItem, ListItemText, Typography } from '@mui/material';
+import { Avatar, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
 
 interface BubbleProps {
   name: string;
+  imgURL: string;
   dialogue: string;
 }
 
-export default function Bubble({name, dialogue}: BubbleProps) {
+export default function Bubble({name, imgURL, dialogue}: BubbleProps) {
   return (
     <ListItem>
+      <ListItemAvatar>
+          <Avatar alt="Remy Sharp" src={imgURL} />
+      </ListItemAvatar>
       <ListItemText
         primary={name}
         secondary={

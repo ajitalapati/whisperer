@@ -23,7 +23,7 @@ export default function OptionPage() {
               spacing={0.5} 
               direction="row"
               alignItems="left"
-              justifyContent="center"
+              justifyContent="left"
               style={{ minHeight: '100vh', width:"70%", margin:"auto" }}
               >
               {people.map((x: OptionProps) => {

@@ -14,7 +14,7 @@ export interface OptionProps {
 
 export default function Option({name, imgURL, description}: OptionProps) {
   return (
-    <Link to={"/".concat(name)} state={{conversee: name, user: "Ajit"}} style={{textDecoration: 'none'}}>
+    <Link to={"/".concat(name)} state={{conversee: name, user: "Ajit", imgURL: imgURL}} style={{textDecoration: 'none'}}>
       <Card sx={{ maxWidth: 370 }}>
         <CardActionArea>
           <CardMedia
