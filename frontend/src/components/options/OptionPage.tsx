@@ -9,7 +9,6 @@ import { UserContext } from '../../App';
 const people: OptionProps[] = constants.peopleOptions;
 
 export default function OptionPage() {
-  const user = useContext(UserContext)
   return (
     <>
         <Grid container direction="column" alignItems="left" justifyContent="right" spacing={4}>

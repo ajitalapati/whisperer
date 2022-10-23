@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import Bubble from './Bubble'
 import { TextField, List, Button, Grid, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';

@@ -16,13 +16,6 @@ export default class hwService{
       var myHeaders = new Headers();
       myHeaders.append("Access-Control-Allow-Origin", "*");
       myHeaders.append("Content-Type", "text/plain");
-      var raw = "{\"dialogue\": [\"Hello world\"]}";
-      var requestOptions: any = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-      };
 
       const rawResponse = await fetch('https://bcif2jc2wa.execute-api.us-east-1.amazonaws.com/beta/continue', {
           method: 'POST',

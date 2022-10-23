@@ -1,4 +1,4 @@
-import React, { Component, createContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import Conv from './components/conv/Conv';
 import OptionPage from './components/options/OptionPage'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
