@@ -1,10 +1,8 @@
-import React, {useContext} from 'react'
 import { Grid } from '@mui/material'
 import Option from './Option'
 import { OptionProps } from './Option';
 import Typography from '@mui/material/Typography';
 import { constants } from "../../constants"
-import { UserContext } from '../../App';
 
 const people: OptionProps[] = constants.peopleOptions;
 
