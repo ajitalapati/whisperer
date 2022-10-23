@@ -24,7 +24,7 @@ export default function Conv({user}: ConvProps) {
         setConv([...conv, currentInput])
         const tempCurrInput = currentInput
         setCurrentInput("")
-        await hwService.continueConv(user, conversee, [...conv, tempCurrInput]).then((data) => {
+        await hwService.continue(user, conversee, [...conv, tempCurrInput]).then((data) => {
             add.push(data)
         })
         setConv([...conv, ...add])
