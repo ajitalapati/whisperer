@@ -1,5 +1,5 @@
 export default class hwService{
-    public static async continueConv(user: string, conversee: string, conv: string[]): Promise<string> {
+    public static async continue(user: string, conversee: string, conv: string[]): Promise<string> {
         const rawResponse = await fetch('http://127.0.0.1:5000/new', {
           method: 'POST',
           headers: {
@@ -12,7 +12,7 @@ export default class hwService{
         return content.res
     }
 
-    public static async continue(user: string, conversee: string, conv: string[]): Promise<string> {
+    public static async continueConv(user: string, conversee: string, conv: string[]): Promise<string> {
       var myHeaders = new Headers();
       myHeaders.append("Access-Control-Allow-Origin", "*");
       myHeaders.append("Content-Type", "text/plain");

@@ -8,7 +8,7 @@ class Conversation:
         self.conversee = conversee
 
         if not dialogue: 
-            initialText = f"The following is a conversation between {user} and {conversee}."
+            initialText = f"The following is a conversation between {user} and {conversee}. Frame responses as {conversee}"
             self.dialogue = [initialText]
 
     def getModelInput(self):
@@ -19,4 +19,3 @@ class Conversation:
                 for i in range(len(self.dialogue[1:]))
             )
         return modelInput + f"\n{self.conversee}: "
-

@@ -4,6 +4,9 @@ import { constants } from '../constants'
 import { Link } from 'react-router-dom'
 
 export default function LandingPage({setUserCallback}: any) {
+    const videoStyle: any = {
+        height: "100%"
+    }
   return (
     <>
     <Grid container direction="column" alignItems="center" justifyContent="center" spacing={4}>

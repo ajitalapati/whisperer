@@ -15,8 +15,9 @@ export default function Conv({user}: ConvProps) {
     const [currentInput, setCurrentInput] = useState<string>("");
     //const [user, setUser] = useState<string>("Ajit Alapati");
     //const [conversee, setConversee] = useState<string>("Julius Caesar");
-    const initLine: string = "The following is a conversation between ".concat(user).concat(" and ").concat(conversee).concat(".");
-    const [conv, setConv] = useState<string[]>([initLine]);
+    const initLine: string = `The following is a conversation between ${user} and ${conversee}.`
+    const frameLine: string = `Responses should be as if they are from ${conversee}`;
+    const [conv, setConv] = useState<string[]>([`${initLine} ${frameLine}`]);
 
     const sendClick = async () => {
         //send through string data from input
