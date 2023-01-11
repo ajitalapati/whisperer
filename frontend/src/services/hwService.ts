@@ -1,10 +1,13 @@
+import { ConvBubble } from "../components/conv/Conv"; 
+
 export default class hwService{
-    public static async continueConv(user: string, conversee: string, conv: string[]): Promise<string> {
+    public static async continueConv(user: string, conversee: string, conv: ConvBubble[]): Promise<string> {
         const rawResponse = await fetch('http://127.0.0.1:5000/new', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://127.0.0.1:5000'
           },
           body: JSON.stringify({user: user, conversee: conversee, conversation: conv})
         });
@@ -12,7 +15,7 @@ export default class hwService{
         return content.res
     }
 
-    public static async continue(user: string, conversee: string, conv: string[]): Promise<string> {
+    public static async continue(user: string, conversee: string, conv: ConvBubble[]): Promise<string> {
       var myHeaders = new Headers();
       myHeaders.append("Access-Control-Allow-Origin", "*");
       myHeaders.append("Content-Type", "text/plain");

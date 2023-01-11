@@ -1,5 +1,5 @@
 from flask import Flask, redirect, url_for, request, render_template
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from Conversation import *
 from OpenAIService import *
 from constants import openai_key
@@ -13,6 +13,7 @@ def home():
    return {"d": "welcome to whisper"}
 
 @app.route('/new',methods = ['POST', 'GET'])
+@cross_origin()
 def login():
    if request.method == 'POST':
       r = request.json

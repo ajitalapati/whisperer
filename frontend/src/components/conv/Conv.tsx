@@ -9,26 +9,44 @@ interface ConvProps{
     user: string;
 }
 
+export interface ConvBubble{
+    name: string;
+    text: string;
+    imgURL: string;
+}
+
 export default function Conv({user}: ConvProps) {
     const location = useLocation();
     const { conversee, imgURL } = location.state;
+    const userImgURL = "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png"
     const [currentInput, setCurrentInput] = useState<string>("");
-    //const [user, setUser] = useState<string>("Ajit Alapati");
-    //const [conversee, setConversee] = useState<string>("Julius Caesar");
     const initLine: string = `The following is a conversation between ${user} and ${conversee}.`
-    const frameLine: string = `Responses should be as if they are from ${conversee}`;
-    const [conv, setConv] = useState<string[]>([`${initLine} ${frameLine}`]);
+    const [dia, setDia] = useState<ConvBubble[]>([]);
 
     const sendClick = async () => {
         //send through string data from input
-        const add = [currentInput]
-        setConv([...conv, currentInput])
+        const newUserInput = {
+            name: user,
+            text: currentInput,
+            imgURL: userImgURL
+        }
+        const add = [newUserInput]
+        setDia([...dia, newUserInput])
         const tempCurrInput = currentInput
         setCurrentInput("")
-        await hwService.continue(user, conversee, [...conv, tempCurrInput]).then((data) => {
-            add.push(data)
+        const newInput: ConvBubble = {
+            name: user,
+            text: tempCurrInput,
+            imgURL: userImgURL
+        }
+        await hwService.continue(user, conversee, [...dia, newInput]).then((data) => {
+            add.push({
+                name: conversee,
+                text: data,
+                imgURL: imgURL
+            })
         })
-        setConv([...conv, ...add])
+        setDia([...dia, ...add])
     }
     const map = [user, conversee];
     const imgOption = ["https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png", imgURL];
@@ -59,11 +77,11 @@ export default function Conv({user}: ConvProps) {
                 </Grid>
                 <Grid item xs={11}>          
                     <List sx={{ bgcolor: 'background.paper'}}>
-                        {
-                        conv.slice(1).map((x: string, i:number) => {
-                            return <Bubble name={map[i%2]} dialogue={x} imgURL={imgOption[i%2]}/>;
+                    {
+                        dia.map((x) => {
+                            return <Bubble name={x.name} dialogue={x.text} imgURL={x.imgURL}></Bubble>
                         })
-                        }
+                    }
                     </List>
                 </Grid>  
     
