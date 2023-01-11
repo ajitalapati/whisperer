@@ -48,8 +48,7 @@ export default function Conv({user}: ConvProps) {
         })
         setDia([...dia, ...add])
     }
-    const map = [user, conversee];
-    const imgOption = ["https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png", imgURL];
+
     return (
         <>
         <div
