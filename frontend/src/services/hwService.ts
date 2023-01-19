@@ -31,4 +31,21 @@ export default class hwService{
         const content = await rawResponse.json();
       return content.res
     }
+
+    public static async mark1(user: string, conversee: string, conv: ConvBubble[]): Promise<any> {
+      var myHeaders = new Headers();
+      myHeaders.append("Access-Control-Allow-Origin", "*");
+      myHeaders.append("Content-Type", "text/plain");
+
+      const rawResponse = await fetch('https://bcif2jc2wa.execute-api.us-east-1.amazonaws.com/beta/mark1', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({"user": user, "conversee": conversee, "conversation": conv})
+        });
+        const content = await rawResponse.json();
+      return content.statusCode
+    }
   }

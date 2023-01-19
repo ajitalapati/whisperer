@@ -27,6 +27,6 @@ export const constants = {
         }
       ],
     styleColors: {
-        mainColor: "#800e0a"
+        mainColor: "#3498eb"
     }
 };
