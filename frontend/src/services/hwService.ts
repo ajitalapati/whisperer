@@ -1,7 +1,7 @@
 import { ConvBubble } from "../components/conv/Conv"; 
 
 export default class hwService{
-    public static async continueConv(user: string, conversee: string, conv: ConvBubble[]): Promise<string> {
+    public static async flaskContinue(user: string, conversee: string, conv: ConvBubble[]): Promise<string> {
         const rawResponse = await fetch('http://127.0.0.1:5000/new', {
           method: 'POST',
           headers: {

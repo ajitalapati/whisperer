@@ -23,8 +23,26 @@ interface Props {
   window?: () => Window;
 }
 
+interface NavItem {
+  name: string,
+  routerUrl: string
+}
+
 const drawerWidth = 240;
-const navItems = ['Home', 'Options', 'About', 'Contact'];
+const navItems: NavItem[] = [
+  {
+    name: "Home",
+    routerUrl: "/"
+  },
+  {
+    name: "Options",
+    routerUrl: "/options"
+  },
+  {
+    name: "Sign In",
+    routerUrl: "/signin"
+  }
+];
 
 export default function NavBar(props: Props) {
   const { window } = props;
@@ -37,16 +55,20 @@ export default function NavBar(props: Props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Project Whisper
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
+          <Typography>
+            <Link to={item.routerUrl}>
+              <ListItem key={item.name} disablePadding>
+                <ListItemButton sx={{ textAlign: 'center' }}>
+                  <ListItemText primary={item.name} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          </Typography>
         ))}
       </List>
     </Box>
@@ -86,7 +108,7 @@ export default function NavBar(props: Props) {
               </Button>
             </Link>
             <Link to="/signin" style={{textDecoration: 'none'}}>
-              <Button key={'options'} sx={{ color: '#fff' }}>
+              <Button key={'sign in'} sx={{ color: '#fff' }}>
                   Sign In
               </Button>
             </Link>
