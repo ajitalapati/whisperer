@@ -16,14 +16,9 @@ export default class hwService{
     }
 
     public static async continue(user: string, conversee: string, conv: ConvBubble[]): Promise<string> {
-      var myHeaders = new Headers();
-      myHeaders.append("Access-Control-Allow-Origin", "*");
-      myHeaders.append("Content-Type", "text/plain");
-
       const rawResponse = await fetch('https://bcif2jc2wa.execute-api.us-east-1.amazonaws.com/beta/continue', {
           method: 'POST',
           headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({"user": user, "conversee": conversee, "conversation": conv})
@@ -32,15 +27,10 @@ export default class hwService{
       return content.res
     }
 
-    public static async mark1(user: string, conversee: string, conv: ConvBubble[]): Promise<any> {
-      var myHeaders = new Headers();
-      myHeaders.append("Access-Control-Allow-Origin", "*");
-      myHeaders.append("Content-Type", "text/plain");
-
+    public static async mark1(user: string, conversee: string, conv: ConvBubble[]): Promise<number> {
       const rawResponse = await fetch('https://bcif2jc2wa.execute-api.us-east-1.amazonaws.com/beta/mark1', {
           method: 'POST',
           headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({"user": user, "conversee": conversee, "conversation": conv})

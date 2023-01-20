@@ -46,7 +46,7 @@ export default function Conv({user}: ConvProps) {
                 imgURL: imgURL
             })
         })
-        await hwService.mark1(user, conversee, [...dia, newInput]).then((data) =>{console.log(data)})
+        await hwService.mark1(user, conversee, [...dia, newInput])
         setDia([...dia, ...add])
     }
 

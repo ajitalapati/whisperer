@@ -68,7 +68,7 @@ export default function NavBar(props: Props) {
             <MenuIcon />
           </IconButton>
           <Typography
-            variant="h5"
+            variant="h4"
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
@@ -83,6 +83,11 @@ export default function NavBar(props: Props) {
             <Link to="/options" style={{textDecoration: 'none'}}>
               <Button key={'options'} sx={{ color: '#fff' }}>
                   Options
+              </Button>
+            </Link>
+            <Link to="/signin" style={{textDecoration: 'none'}}>
+              <Button key={'options'} sx={{ color: '#fff' }}>
+                  Sign In
               </Button>
             </Link>
           </Box>

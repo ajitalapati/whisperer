@@ -12,7 +12,7 @@ export default function LandingPage({setUserCallback}: any) {
                     Welcome to Project Whisper
                 </Typography>
                 <Typography component="h1" variant="h4" align="center" color="textPrimary">
-                    A way to converse with History's greatest minds.
+                    Experience History Through Conversation.
                 </Typography>
             </Grid>
             <Grid item>
@@ -33,7 +33,7 @@ export default function LandingPage({setUserCallback}: any) {
             </Grid>
             <Grid item>
                 <Link to="/options" style={{textDecoration: 'none'}}>
-                    <Button variant="contained" style={{backgroundColor: constants.styleColors.mainColor, padding:"10px 50px 10px 50px"}}>Let's do it</Button>
+                    <Button variant="contained" style={{backgroundColor: constants.styleColors.mainColor, padding:"10px 50px 10px 50px"}}>Start Talking</Button>
                 </Link>
             </Grid>
         </Grid>
