@@ -18,8 +18,7 @@ import CustomAlert from './CustomAlert';
 
 export default function SignIn() {
   const { authenticate } = useContext(AccountContext);
-  const [isAlert, setIsAlert] = useState<Boolean>(false);
-  const [alertMessage, setAlertMessage] = useState<string>("");
+  const [alertList, setAlertList] = useState<string[]>([]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,14 +32,15 @@ export default function SignIn() {
         window.location.reload();
       }).catch((err: any)=>{
         console.log(JSON.stringify(err));
-        setIsAlert(true);
-        setAlertMessage(JSON.stringify(err))
+        setAlertList([...alertList, JSON.stringify(err)])
       });
   };
 
   return (
     <>
-      {isAlert ? <CustomAlert message={alertMessage} reset={setIsAlert}/> : <></>}
+      {alertList.map((message: string)=>{
+        return <CustomAlert message={message}/>
+      })}
       <Container component="main" maxWidth="xs">
         <Box
           sx={{

@@ -10,12 +10,16 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import cognitoService from '../../services/cognitoService';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
+import { useState } from 'react';
+import CustomAlert from './CustomAlert';
 
 interface SignUpProps{
   user: string;
 }
 
 export default function SignUp({user}: SignUpProps) {
+  const [alertList, setAlertList] = useState<string[]>([]);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -38,6 +42,7 @@ export default function SignUp({user}: SignUpProps) {
     cognitoService.signUp(emailUser, pass, userAttributes, [], (err, data)=>{
         if (err) {
           console.log(err)
+          setAlertList([...alertList, JSON.stringify(err)])
         }
         console.log(data)
     })
@@ -45,6 +50,9 @@ export default function SignUp({user}: SignUpProps) {
 
   return (
     <>
+      {alertList.map((message: string)=>{
+        return <CustomAlert message={message}/>
+      })}
       <Container component="main" maxWidth="xs">
         <Box
           sx={{

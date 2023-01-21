@@ -9,10 +9,9 @@ import { SetStateAction } from 'react';
 
 interface CustomAlertProps{
   message: string;
-  reset: Dispatch<SetStateAction<Boolean>>
 }
 
-export default function CustomAlert({message, reset}: CustomAlertProps) {
+export default function CustomAlert({message}: CustomAlertProps) {
   const [open, setOpen] = React.useState(true);
 
   return (
@@ -26,7 +25,6 @@ export default function CustomAlert({message, reset}: CustomAlertProps) {
               size="small"
               onClick={() => {
                 setOpen(false);
-                reset(false)
               }}
             >
               <CloseIcon fontSize="inherit" />
