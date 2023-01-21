@@ -30,6 +30,7 @@ export default function AccountNav() {
             console.log("Session", session)
             setStatus(true)
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const notSignedIn = (
