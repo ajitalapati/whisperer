@@ -15,10 +15,12 @@ import { AccountContext } from './Account';
 import { useContext, useState } from 'react';
 import { CognitoUserSession } from 'amazon-cognito-identity-js';
 import CustomAlert from './CustomAlert';
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
   const { authenticate } = useContext(AccountContext);
   const [alertList, setAlertList] = useState<string[]>([]);
+  const  navigate = useNavigate(); 
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,6 +31,7 @@ export default function SignIn() {
     authenticate(emailUser, pass).then(
       (data: CognitoUserSession)=>{
         console.log(data)
+        navigate("/options");
         window.location.reload();
       }).catch((err: any)=>{
         console.log(JSON.stringify(err));

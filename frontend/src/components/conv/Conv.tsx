@@ -1,13 +1,11 @@
-import React, {useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import Bubble from './Bubble'
 import { TextField, List, Button, Grid, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import hwService from "../../services/hwService";
 import { useLocation } from "react-router-dom";
-
-interface ConvProps{
-    user: string;
-}
+import { AccountContext } from '../users/Account';
+import { CognitoUserSession } from 'amazon-cognito-identity-js';
 
 export interface ConvBubble{
     name: string;
@@ -15,13 +13,24 @@ export interface ConvBubble{
     imgURL: string;
 }
 
-export default function Conv({user}: ConvProps) {
+export default function Conv() {
     const location = useLocation();
     const { conversee, imgURL } = location.state;
     const userImgURL = "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png"
     const [currentInput, setCurrentInput] = useState<string>("");
-    const initLine: string = `The following is a conversation between ${user} and ${conversee}.`
+    const [user, setUser] = useState<string>("a modern day person");
     const [dia, setDia] = useState<ConvBubble[]>([]);
+    const { getSession } = useContext(AccountContext)
+
+    useEffect(()=>{
+        getSession().then((session: CognitoUserSession)=>{
+            setUser(session.getIdToken().payload.name)
+        })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+
+    const initLine: string = `The following is a conversation between ${user} and ${conversee}.`
 
     const sendClick = async () => {
         //send through string data from input

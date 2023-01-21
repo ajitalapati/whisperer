@@ -12,13 +12,11 @@ import cognitoService from '../../services/cognitoService';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import { useState } from 'react';
 import CustomAlert from './CustomAlert';
+import { useNavigate } from 'react-router-dom';
 
-interface SignUpProps{
-  user: string;
-}
-
-export default function SignUp({user}: SignUpProps) {
+export default function SignUp() {
   const [alertList, setAlertList] = useState<string[]>([]);
+  const  navigate = useNavigate(); 
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -43,8 +41,11 @@ export default function SignUp({user}: SignUpProps) {
         if (err) {
           console.log(err)
           setAlertList([...alertList, JSON.stringify(err)])
-        }
-        console.log(data)
+        } else {
+          console.log(data)
+          navigate("/options");
+          window.location.reload();
+       }
     })
   };
 
@@ -70,7 +71,6 @@ export default function SignUp({user}: SignUpProps) {
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
-              //value={user}
               margin="normal"
               required
               fullWidth

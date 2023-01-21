@@ -27,7 +27,6 @@ export default function AccountNav() {
 
     useEffect(()=>{
         getSession().then((session: CognitoUserSession)=>{
-            console.log("Session", session)
             setStatus(true)
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps

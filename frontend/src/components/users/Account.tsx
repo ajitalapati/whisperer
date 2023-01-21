@@ -11,7 +11,7 @@ const Account = (props: any) => {
     const getSession = async ()=>{
         return await new Promise<CognitoUserSession>((resolve, reject)=>{
             const user: CognitoUser|null = Pool.getCurrentUser();
-            console.log(user)
+            //console.log(user)
              if (user) {
                 user.getSession((err: Error|null, session: CognitoUserSession)=>{
                     if(err){
