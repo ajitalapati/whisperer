@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import cognitoService from '../../services/cognitoService';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
-import Alert from '@mui/material/Alert';
 
 interface SignUpProps{
   user: string;
