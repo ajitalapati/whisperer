@@ -2,12 +2,8 @@ import React, { useContext } from 'react'
 import { Grid, Typography, Button, Input } from '@mui/material'
 import { constants } from '../constants'
 import { Link } from 'react-router-dom'
-import { AccountContext } from './users/Account'
 
 export default function LandingPage({setUserCallback}: any) {
-
-    const { getUserAttributes } = useContext(AccountContext); 
-    getUserAttributes()
     return (
         <>
             <Grid container direction="column" alignItems="center" justifyContent="center" spacing={6}>
