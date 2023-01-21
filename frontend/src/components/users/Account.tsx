@@ -10,7 +10,8 @@ const AccountContext = createContext<any>({
 const Account = (props: any) => {
     const getSession = async ()=>{
         return await new Promise<CognitoUserSession>((resolve, reject)=>{
-            const user = Pool.getCurrentUser();
+            const user: CognitoUser|null = Pool.getCurrentUser();
+            console.log(user)
              if (user) {
                 user.getSession((err: Error|null, session: CognitoUserSession)=>{
                     if(err){
@@ -36,15 +37,12 @@ const Account = (props: any) => {
             })
             user.authenticateUser(authDetails, {
                 onSuccess: (data)=>{
-                    console.log(data);
                     resolve(data);
                 },
                 onFailure: (err)=>{
-                    console.log(err)
                     reject(err);
                 },
                 newPasswordRequired: (data)=>{
-                    console.log("New Password Required: ", data)
                     resolve(data);
                 },
             })

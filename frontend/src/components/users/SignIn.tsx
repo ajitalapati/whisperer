@@ -12,11 +12,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { AccountContext } from './Account';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CognitoUserSession } from 'amazon-cognito-identity-js';
+import CustomAlert from './CustomAlert';
 
 export default function SignIn() {
   const { authenticate } = useContext(AccountContext);
+  const [isAlert, setIsAlert] = useState<Boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string>("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -24,10 +27,20 @@ export default function SignIn() {
     const emailUser: any = data.get("email");
     const pass: any = data.get("password");
 
-    authenticate(emailUser, pass).then((data: CognitoUserSession)=>{console.log(data)})
+    authenticate(emailUser, pass).then(
+      (data: CognitoUserSession)=>{
+        console.log(data)
+        window.location.reload();
+      }).catch((err: any)=>{
+        console.log(JSON.stringify(err));
+        setIsAlert(true);
+        setAlertMessage(JSON.stringify(err))
+      });
   };
 
   return (
+    <>
+      {isAlert ? <CustomAlert message={alertMessage} reset={setIsAlert}/> : <></>}
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
@@ -93,5 +106,6 @@ export default function SignIn() {
           </Box>
         </Box>
       </Container>
+    </>
   );
 }

@@ -46,7 +46,6 @@ export default function SignUp({user}: SignUpProps) {
 
   return (
     <>
-      <Alert severity="error">This is an error alert — check it out!</Alert>
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
