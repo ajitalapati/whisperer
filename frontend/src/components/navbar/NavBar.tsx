@@ -13,7 +13,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import {Link} from 'react-router-dom'
-import { constants } from "../constants"
+import { constants } from '../../constants';
+import AccountNav from './AccountNav';
 
 interface Props {
   /**
@@ -107,11 +108,7 @@ export default function NavBar(props: Props) {
                   Options
               </Button>
             </Link>
-            <Link to="/signin" style={{textDecoration: 'none'}}>
-              <Button key={'sign in'} sx={{ color: '#fff' }}>
-                  Sign In
-              </Button>
-            </Link>
+            <AccountNav/>
           </Box>
         </Toolbar>
       </AppBar>

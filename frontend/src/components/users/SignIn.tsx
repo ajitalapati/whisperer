@@ -11,37 +11,20 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import cognitoService from '../../services/cognitoService';
-import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
+import { AccountContext } from './Account';
+import { useContext } from 'react';
+import { CognitoUserSession } from 'amazon-cognito-identity-js';
 
 export default function SignIn() {
+  const { authenticate } = useContext(AccountContext);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
     const emailUser: any = data.get("email");
     const pass: any = data.get("password");
-    
-    const user = new CognitoUser({
-      Username: emailUser,
-      Pool: cognitoService
-    })
-    const authDetails = new AuthenticationDetails({
-      Username: emailUser,
-      Password: pass
-    })
 
-    user.authenticateUser(authDetails, {
-      onSuccess: (data)=>{
-        console.log(data);
-      },
-      onFailure: (err)=>{
-        console.log(err)
-      },
-      newPasswordRequired: (newPasswordRequired)=>{
-        console.log("New Password Required: ", newPasswordRequired)
-      },
-    })
+    authenticate(emailUser, pass).then((data: CognitoUserSession)=>{console.log(data)})
   };
 
   return (
