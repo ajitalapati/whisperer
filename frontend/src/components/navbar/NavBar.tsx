@@ -79,7 +79,7 @@ export default function NavBar(props: Props) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar component="nav" style={{backgroundColor: constants.styleColors.mainColor }}>
+      <AppBar component="nav" style={{backgroundColor: constants.styleColors.mainColor }} >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -123,13 +123,13 @@ export default function NavBar(props: Props) {
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
           }}
         >
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" sx={{ p: 3 }}>
+      <Box component="main" sx={{ p: 3, padding: "0" }}>
         <Toolbar />
       </Box>
     </Box>
