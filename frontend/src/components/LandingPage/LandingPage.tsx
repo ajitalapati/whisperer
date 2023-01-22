@@ -1,5 +1,5 @@
 import { Button, Grid, Typography } from "@mui/material";
-import HeroSlider, { Overlay, Slide, MenuNav } from "hero-slider";
+import HeroSlider, { Overlay, Slide } from "hero-slider";
 import { Link } from "react-router-dom";
 import { constants } from "../../constants";
 import "./LandingPage.css"
