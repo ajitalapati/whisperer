@@ -17,7 +17,7 @@ export default function BasicSlider() {
       autoplay
       controller={{
         initialSlide: 1,
-        slidingDuration: 500,
+        slidingDuration: 300,
         slidingDelay: 100,
         onSliding: (nextSlide) =>
           console.debug("onSliding(nextSlide): ", nextSlide),
@@ -34,9 +34,11 @@ export default function BasicSlider() {
             shouldDisplayButtons: false
         }}
     >
-      <Overlay className={"landingOverlay"}>
+      <Overlay>
+        <div className={"landingOverlay"}>
             <Grid container direction="column" alignItems="center" justifyContent="center" spacing={6}
-            sx={{margin: "auto auto", position: 'absolute', top: "20%"}}>
+            className={"centerText"}
+            >
                 <Grid item>
                     <Typography component="h2" variant="h2" align="center" color="common.white">
                         Welcome to Project Whisper
@@ -47,8 +49,9 @@ export default function BasicSlider() {
                 </Grid>
                 <Grid item>
                     <Typography style={{width:"60%", margin: "auto"}} component="h1" variant="body1" align="center" color="common.white" justifyContent="center">
-                        HW is a project that attempts to allow modern day people to converse with historical figures of the past. Built on top of OpenAI, HW hopes to display the powers of AI and how it can be used to enhance certain experiences. 
-                        This project serves as a small example of what can be built around up and coming, public AI models. 
+                      Project Whisper is a revolutionary web app that allows you to explore history in a new and personal way. 
+                      By conversing with historical figures through advanced AI technology, you'll gain unique insights and perspectives on the past that you won't find in a traditional history book. 
+                      Sign up now and start your journey through time, and discover how understanding the past can shape our future.
                     </Typography>
                 </Grid>
                 <Grid item>
@@ -57,6 +60,7 @@ export default function BasicSlider() {
                     </Link>
                 </Grid>
             </Grid>
+          </div>
       </Overlay>
 
       <Slide

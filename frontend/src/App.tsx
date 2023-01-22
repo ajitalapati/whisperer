@@ -7,7 +7,6 @@ import LandingPage from './components/LandingPage/LandingPage'
 import SignIn from './components/users/SignIn';
 import SignUp from './components/users/SignUp';
 import { Account } from './components/users/Account';
-import { CssBaseline } from '@mui/material';
 
 export const UserContext = createContext({user: ""})
 
@@ -16,7 +15,6 @@ function App() {
     <Account>
         <HashRouter>
         <NavBar/>
-          <CssBaseline/>
           <Routes>
             <Route path="/" element={<LandingPage/>}/>
             <Route path="/options" element={<OptionPage/>}/>

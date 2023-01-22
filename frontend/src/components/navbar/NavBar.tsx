@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 import {Link} from 'react-router-dom'
 import { constants } from '../../constants';
 import AccountNav from './AccountNav';
+import { CssBaseline } from '@mui/material';
 
 interface Props {
   /**
@@ -79,6 +80,7 @@ export default function NavBar(props: Props) {
 
   return (
     <Box sx={{ display: 'flex' }}>
+      <CssBaseline/>
       <AppBar component="nav" style={{backgroundColor: constants.styleColors.mainColor }} >
         <Toolbar>
           <IconButton

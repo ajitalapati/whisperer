@@ -43,7 +43,7 @@ export default function SignUp() {
           setAlertList([...alertList, JSON.stringify(err)])
         } else {
           console.log(data)
-          navigate("/options");
+          navigate("/signin");
           window.location.reload();
        }
     })
