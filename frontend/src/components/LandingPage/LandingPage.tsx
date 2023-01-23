@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { constants } from "../../constants";
 import "./LandingPage.css"
 
-const bogliasco =
+const benfranklin =
   "https://cdn.britannica.com/72/110272-050-3CDD8564/Benjamin-Franklin.jpg";
-const countyClare = "https://images.immediate.co.uk/production/volatile/sites/4/2021/04/GettyImages-98328574-hero-72f8c48.jpg";
-const craterRock = "https://daily.jstor.org/wp-content/uploads/2019/10/ada_lovelace_pioneer_1050x700.jpg";
-const giauPass = "https://image.cnbcfm.com/api/v1/image/106823064-1610467334769-GettyImages-105929520.jpg";
+const stevejobs = "https://images.immediate.co.uk/production/volatile/sites/4/2021/04/GettyImages-98328574-hero-72f8c48.jpg";
+const ada = "https://daily.jstor.org/wp-content/uploads/2019/10/ada_lovelace_pioneer_1050x700.jpg";
+const aristotle = "https://image.cnbcfm.com/api/v1/image/106823064-1610467334769-GettyImages-105929520.jpg";
 
 export default function BasicSlider() {
   return (
@@ -67,7 +67,7 @@ export default function BasicSlider() {
         shouldRenderMask
         label="Giau Pass - Italy"
         background={{
-            backgroundImageSrc: giauPass,
+            backgroundImageSrc: benfranklin,
           }}
       />
 
@@ -75,7 +75,7 @@ export default function BasicSlider() {
         shouldRenderMask
         label="Bogliasco - Italy"
         background={{
-          backgroundImageSrc: bogliasco
+          backgroundImageSrc: stevejobs
         }}
       />
 
@@ -83,7 +83,7 @@ export default function BasicSlider() {
         shouldRenderMask
         label="County Clare - Ireland"
         background={{
-          backgroundImageSrc: countyClare
+          backgroundImageSrc: ada
         }}
       />
 
@@ -91,7 +91,7 @@ export default function BasicSlider() {
         shouldRenderMask
         label="Crater Rock, OR - United States"
         background={{
-          backgroundImageSrc: craterRock
+          backgroundImageSrc: aristotle
         }}
       />
     </HeroSlider>
