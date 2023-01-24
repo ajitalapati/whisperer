@@ -9,7 +9,8 @@ const people: OptionProps[] = constants.peopleOptions;
 export default function OptionPage() {
   return (
     <>
-        <Grid container direction="column" alignItems="left" justifyContent="right" spacing={4}>
+        <Grid container direction="column" alignItems="left" justifyContent="right" spacing={4}
+        style={{'paddingTop': "20px"}}>
           <Grid item xs={2}>
             <Typography component="h2" variant="h2" align="center" color="textPrimary">
               Who do you want to talk to today?

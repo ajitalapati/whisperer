@@ -17,8 +17,7 @@ export default function BasicSlider() {
       autoplay
       controller={{
         initialSlide: 1,
-        slidingDuration: 300,
-        slidingDelay: 100,
+        slidingDuration: 250,
         onSliding: (nextSlide) =>
           console.debug("onSliding(nextSlide): ", nextSlide),
         onBeforeSliding: (previousSlide, nextSlide) =>
@@ -65,7 +64,7 @@ export default function BasicSlider() {
 
       <Slide
         shouldRenderMask
-        label="Giau Pass - Italy"
+        label="Benjamin Franklin"
         background={{
             backgroundImageSrc: benfranklin,
           }}
@@ -73,7 +72,7 @@ export default function BasicSlider() {
 
       <Slide
         shouldRenderMask
-        label="Bogliasco - Italy"
+        label="Steve Jobs"
         background={{
           backgroundImageSrc: stevejobs
         }}
@@ -81,7 +80,7 @@ export default function BasicSlider() {
 
       <Slide
         shouldRenderMask
-        label="County Clare - Ireland"
+        label="Ada Lovelace"
         background={{
           backgroundImageSrc: ada
         }}
@@ -89,7 +88,7 @@ export default function BasicSlider() {
 
       <Slide
         shouldRenderMask
-        label="Crater Rock, OR - United States"
+        label="Aristotle"
         background={{
           backgroundImageSrc: aristotle
         }}
