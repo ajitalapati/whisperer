@@ -22,7 +22,8 @@ text = re.sub(r'==.*?==+', '', text)
 cleanedParagraphs = text.split('\n')
 cleanedParagraphs = [i for i in cleanedParagraphs if i !='']
 
+"""
 documents = [Document(t) for t in cleanedParagraphs]
 index = GPTSimpleVectorIndex(documents)
 
-index.save_to_disk('index.json')
+index.save_to_disk('index.json')"""

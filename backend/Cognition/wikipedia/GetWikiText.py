@@ -1,23 +1,10 @@
-import wikipedia
-import re
+from gpt_index import download_loader, GPTSimpleVectorIndex
 
-# Specify the title of the Wikipedia page
-wiki = wikipedia.page('Benjamin Franklin')
-# Extract the plain text content of the page
-text = wiki.content
+WikipediaReader = download_loader("WikipediaReader")
 
-cleanedParagraphs = text.split('\n')
+loader = WikipediaReader()
+documents = loader.load_data(pages=['Benjamin Franklin'])
 
-cutoff = 0
-for i, val in enumerate(cleanedParagraphs):
-    if "= Notes =" in val:
-        cutoff = i
-cleanedParagraphs = cleanedParagraphs[0:cutoff]
+index = GPTSimpleVectorIndex(documents)
 
-#regex cleaning
-text = '\n'.join(cleanedParagraphs)
-text = re.sub(r'==.*?==+', '', text)
-cleanedParagraphs = text.split('\n')
-cleanedParagraphs = [i for i in cleanedParagraphs if i !='']
-
-print(cleanedParagraphs)
+index.save_to_disk('index2.json')
