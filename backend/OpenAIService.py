@@ -21,3 +21,14 @@ class OpenAIService:
 
         while resText[0] == " " or resText[0] == '\n': resText = resText[1:]
         return resText
+    
+    def chatGPTPost(self, conv):
+        openai.api_key = self.api_key
+
+        completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo", 
+            messages=conv.getModelInput3()
+        )
+        print(conv.getModelInput3())
+
+        return completion["choices"][0]["message"]["content"]

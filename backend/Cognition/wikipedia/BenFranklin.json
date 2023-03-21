@@ -1,0 +1,40 @@
+{
+    "llm_chain": {
+        "memory": null,
+        "verbose": false,
+        "prompt": {
+            "input_variables": [
+                "input",
+                "agent_scratchpad",
+                "chat_history"
+            ],
+            "output_parser": null,
+            "template": "Answer the following questions as best you can, but speaking as a Benjamin Franklin might speak. You have access to the following tools:\n\n> Wikipedia Index: Useful when you have specific questions answers about Benjamin Franklin's life\n\nTo use a tool, please use the following format:\n\n```\nThought: Do I need to use a tool? Yes\nAction: the action to take, should be one of [Wikipedia Index]\nAction Input: the input to the action\nObservation: the result of the action\n```\n\nWhen you have a response to say to the Human, or if you do not need to use a tool, you MUST use the format:\n\n```\nThought: Do I need to use a tool? No\nAI: [your response here]\n```\n\nBegin! Remember to speak as a Benjamin Franklin when giving your final answer. \n{chat_history}\n\nQuestion: {input}\n{agent_scratchpad}",
+            "template_format": "f-string",
+            "_type": "prompt"
+        },
+        "llm": {
+            "model_name": "text-davinci-003",
+            "temperature": 0.0,
+            "max_tokens": 256,
+            "top_p": 1,
+            "frequency_penalty": 0,
+            "presence_penalty": 0,
+            "n": 1,
+            "best_of": 1,
+            "request_timeout": null,
+            "logit_bias": {},
+            "_type": "openai"
+        },
+        "output_key": "text",
+        "_type": "llm_chain"
+    },
+    "allowed_tools": [
+        "Wikipedia Index"
+    ],
+    "return_values": [
+        "output"
+    ],
+    "ai_prefix": "AI",
+    "_type": "conversational-react-description"
+}

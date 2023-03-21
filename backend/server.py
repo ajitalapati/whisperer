@@ -18,7 +18,7 @@ def login():
    if request.method == 'POST':
       r = request.json
       c = Conversation(r["user"], r["conversee"], r['conversation'])
-      return {"res": openAIService.openAIPost(c)}
+      return {"res": openAIService.chatGPTPost(c)}
    else:
       user = request.args.get('nm')
 

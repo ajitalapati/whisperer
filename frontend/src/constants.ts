@@ -2,7 +2,7 @@ export const constants = {
     peopleOptions: [
         {
             name: "Benjamin Franklin",
-            imgURL: "https://www.history.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTU4MDk5NzU4ODk0ODE5MDk3/franklin.jpg",
+            imgURL: "https://www.spitzinc.com/wp-content/uploads/2017/01/BENJAMIN_FRANKLIN.jpg",
             description: "Benjamin Franklin (January 17, 1706 – April 17, 1790) was an American polymath who was active as a writer, scientist, inventor, statesman, diplomat, printer, publisher, and political philosopher.[1] Among the leading intellectuals of his time, Franklin was one of the Founding Fathers of the United States, a drafter and signer of the United States Declaration of Independence, and the first United States Postmaster General."
         },
         {

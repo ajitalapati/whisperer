@@ -48,7 +48,7 @@ export default function Conv() {
             text: tempCurrInput,
             imgURL: userImgURL
         }
-        await hwService.continue(user, conversee, [...dia, newInput]).then((data) => {
+        await hwService.flaskContinue(user, conversee, [...dia, newInput]).then((data) => {
             add.push({
                 name: conversee,
                 text: data,

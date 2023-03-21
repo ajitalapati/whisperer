@@ -21,3 +21,17 @@ class Conversation:
         res += f"{self.conversee}: "
     
         return res
+    
+    def getModelInput3(self):
+        res = [{"role": "system", 
+                "content": f"You are {self.conversee}, the 18th century American statesmen, inventor, and diplomat. Frame all answers as he would say them. You are having a conversation with {self.user}, a 21 year old American student."},
+        ]
+        for i in range(len(self.dia)):
+            if self.dia[i]['name']==self.conversee:
+                res.append({"role": "assistant", 
+                            "content": self.dia[i]['text']})
+            elif self.dia[i]['name']==self.user:
+                res.append({"role": "user", 
+                            "content": self.dia[i]['text']})
+
+        return res
