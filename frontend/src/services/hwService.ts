@@ -16,7 +16,7 @@ export default class hwService{
     }
 
     public static async continue(user: string, conversee: string, conv: ConvBubble[]): Promise<string> {
-      const rawResponse = await fetch('https://bcif2jc2wa.execute-api.us-east-1.amazonaws.com/beta/continue', {
+      const rawResponse = await fetch('https://bcif2jc2wa.execute-api.us-east-1.amazonaws.com/beta', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
