@@ -36,10 +36,7 @@ export default function Conv() {
 
     // Auto-scroll to bottom when new messages arrive
     useEffect(() => {
-        const container = document.querySelector('.overflow-y-auto');
-        if (container) {
-            container.scrollTop = container.scrollHeight;
-        }
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [dia]);
 
     const initLine: string = `The following is a conversation between ${user} and ${conversee}.`
@@ -109,6 +106,7 @@ export default function Conv() {
                             </div>
                         </div>
                     )}
+                    <div ref={messagesEndRef} />
                 </div>
 
                 <div className="flex gap-2 mt-4">
