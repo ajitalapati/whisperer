@@ -1,5 +1,6 @@
 import { Card, CardContent, CardTitle, CardDescription } from "@/components/ui/card"
 import { Link } from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
 
 export interface OptionProps {
     name: string;
@@ -22,11 +23,13 @@ export default function Option({ name, imgURL, description }: OptionProps) {
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
           />
         </div>
-        <CardContent className="h-[200px] overflow-y-auto p-4">
-          <CardTitle className="text-xl mb-2">{name}</CardTitle>
-          <CardDescription className="text-sm">
-            {description}
-          </CardDescription>
+        <CardContent className="h-[200px] flex flex-col">
+          <CardTitle className="text-xl mb-2 flex-shrink-0 pt-2">{name}</CardTitle>
+          <div className="overflow-y-auto">
+            <CardDescription className="text-sm prose prose-sm dark:prose-invert">
+              <ReactMarkdown>{description}</ReactMarkdown>
+            </CardDescription>
+          </div>
         </CardContent>
       </Card>
     </Link>

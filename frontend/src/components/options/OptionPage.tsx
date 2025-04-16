@@ -6,15 +6,15 @@ const people: OptionProps[] = constants.peopleOptions;
 
 export default function OptionPage() {
   return (
-    <div className="p-5">
-      <div className="max-w-7xl mx-auto space-y-8">
-        <h1 className="text-4xl font-bold text-center">
+    <div className="min-h-screen py-8 px-4 sm:px-8">
+      <div className="max-w-6xl mx-auto space-y-8">
+        <h1 className="text-4xl font-bold text-center text-foreground">
           Who do you want to talk to today?
         </h1>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
           {people.map((x: OptionProps) => (
-            <div key={x.name}>
+            <div key={x.name} className="flex justify-center">
               <Option
                 name={x.name}
                 imgURL={x.imgURL}
