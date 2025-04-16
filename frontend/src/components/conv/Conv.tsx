@@ -25,6 +25,7 @@ export default function Conv() {
     const [dia, setDia] = useState<ConvBubble[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
+    const messagesContainerRef = useRef<HTMLDivElement>(null);
     const { getSession } = useContext(AccountContext)
 
     useEffect(()=>{
@@ -36,7 +37,9 @@ export default function Conv() {
 
     // Auto-scroll to bottom when new messages arrive
     useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        if (messagesContainerRef.current) {
+            messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+        }
     }, [dia]);
 
     const initLine: string = `The following is a conversation between ${user} and ${conversee}.`
@@ -79,7 +82,10 @@ export default function Conv() {
                     <h1 className="text-2xl font-semibold text-foreground">{initLine}</h1>
                 </div>
                 
-                <div className="space-y-4 h-[70vh] overflow-y-auto pr-4 scrollbar-hide">
+                <div 
+                    ref={messagesContainerRef}
+                    className="space-y-4 h-[70vh] overflow-y-auto pr-4 scrollbar-hide"
+                >
                     {dia.map((x) => (
                         <Bubble 
                             key={`${x.name}-${x.text}-${x.timestamp?.getTime()}`} 
@@ -106,7 +112,6 @@ export default function Conv() {
                             </div>
                         </div>
                     )}
-                    <div ref={messagesEndRef} />
                 </div>
 
                 <div className="flex gap-2 mt-4">
