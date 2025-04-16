@@ -6,7 +6,7 @@ const people: OptionProps[] = constants.peopleOptions;
 
 export default function OptionPage() {
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-8">
+    <div className="min-h-screen py-8 px-4 sm:px-8 overflow-hidden">
       <div className="max-w-6xl mx-auto space-y-8">
         <h1 className="text-4xl font-bold text-center text-foreground">
           Who do you want to talk to today?

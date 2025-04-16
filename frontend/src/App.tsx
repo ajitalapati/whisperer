@@ -1,14 +1,14 @@
 import { createContext, useState, useEffect } from 'react';
 import Conv from './components/conv/Conv';
-import OptionPage from './components/options/OptionPage'
+import OptionPage from './components/options/OptionPage';
 import { HashRouter, Routes, Route } from "react-router-dom";
 import NavBar from './components/navbar/NavBar';
-import LandingPage from './components/LandingPage/LandingPage'
+import LandingPage from './components/LandingPage/LandingPage';
 import SignIn from './components/users/SignIn';
 import SignUp from './components/users/SignUp';
 import { Account } from './components/users/Account';
 
-export const UserContext = createContext({user: ""})
+export const UserContext = createContext({user: ""});
 export const ThemeContext = createContext({
   isDarkMode: false,
   toggleDarkMode: () => {},
@@ -35,17 +35,19 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
-      <div className={`min-h-screen bg-background ${isDarkMode ? 'dark' : ''}`}>
+      <div className="flex h-screen flex-col bg-background">
         <Account>
           <HashRouter>
-            <NavBar/>
-            <Routes>
-              <Route path="/" element={<LandingPage/>}/>
-              <Route path="/options" element={<OptionPage/>}/>
-              <Route path="/:conversee" element={<Conv/>}/>
-              <Route path="/signin" element={<SignIn/>}/>
-              <Route path="/signup" element={<SignUp/>}/>
-            </Routes>
+            <NavBar />
+            <main className="flex-1 overflow-y-auto">
+              <Routes>
+                <Route path="/" element={<LandingPage/>}/>
+                <Route path="/options" element={<OptionPage/>}/>
+                <Route path="/:conversee" element={<Conv/>}/>
+                <Route path="/signin" element={<SignIn/>}/>
+                <Route path="/signup" element={<SignUp/>}/>
+              </Routes>
+            </main>
           </HashRouter>
         </Account>
       </div>
