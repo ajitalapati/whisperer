@@ -1,39 +1,25 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Alert from '@mui/material/Alert';
-import IconButton from '@mui/material/IconButton';
-import Collapse from '@mui/material/Collapse';
-import CloseIcon from '@mui/icons-material/Close';
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { X } from "lucide-react";
 
-interface CustomAlertProps{
+interface CustomAlertProps {
   message: string;
 }
 
-export default function CustomAlert({message}: CustomAlertProps) {
+export default function CustomAlert({ message }: CustomAlertProps) {
   const [open, setOpen] = React.useState(true);
 
+  if (!open) return null;
+
   return (
-    <Box sx={{ width: '100%' }}>
-      <Collapse in={open}>
-        <Alert
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-          sx={{ mb: 2 }}
-          severity="error"
-        >
-          {message}
-        </Alert>
-      </Collapse>
-    </Box>
+    <Alert variant="destructive" className="mb-4">
+      <AlertDescription className="flex items-center justify-between">
+        <span>{message}</span>
+        <X 
+          className="h-4 w-4 cursor-pointer" 
+          onClick={() => setOpen(false)}
+        />
+      </AlertDescription>
+    </Alert>
   );
 }

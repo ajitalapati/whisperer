@@ -1,5 +1,4 @@
-import React from 'react'
-import { Avatar, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
 
 interface BubbleProps {
   name: string;
@@ -7,25 +6,16 @@ interface BubbleProps {
   dialogue: string;
 }
 
-export default function Bubble({name, imgURL, dialogue}: BubbleProps) {
+export default function Bubble({ name, imgURL, dialogue }: BubbleProps) {
   return (
-    <ListItem>
-      <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src={imgURL} />
-      </ListItemAvatar>
-      <ListItemText
-        primary={name}
-        secondary={
-            <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-            >
-                {dialogue}
-            </Typography>
-        }
-    />
-    </ListItem>
+    <div className="flex items-start space-x-4 p-4">
+      <Avatar>
+        <AvatarImage src={imgURL} alt={name} />
+      </Avatar>
+      <div className="flex-1 space-y-1">
+        <p className="text-sm font-medium leading-none">{name}</p>
+        <p className="text-sm text-muted-foreground">{dialogue}</p>
+      </div>
+    </div>
   )
 }

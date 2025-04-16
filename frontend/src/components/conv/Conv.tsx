@@ -1,7 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react'
 import Bubble from './Bubble'
-import { TextField, List, Button, Grid, Typography } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Send } from "lucide-react";
 import hwService from "../../services/hwService";
 import { useLocation } from "react-router-dom";
 import { AccountContext } from '../users/Account';
@@ -60,67 +61,40 @@ export default function Conv() {
     }
 
     return (
-        <>
-        <div
-            style={{
-            display: 'flex',
-            position: "absolute",
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            paddingTop: "20px"
-        }}>
-            <Grid
-                container
-                spacing={1}
-                direction="column"
-                alignItems="left"
-                justifyContent="left"
-                style={{ minHeight: '100vh', width:"60%" }}
-            >
-                <Grid item>
-                    <Typography
-                        variant="h4"
-                        sx={{ fontWeight: '3px' }}
-                    >{initLine}</Typography>
-                    
-                </Grid>
-                <Grid item xs={11}>          
-                    <List sx={{ bgcolor: 'background.paper'}}>
-                    {
-                        dia.map((x) => {
-                            return <Bubble name={x.name} dialogue={x.text} imgURL={x.imgURL}></Bubble>
-                        })
-                    }
-                    </List>
-                </Grid>  
-    
-                <Grid container spacing={0.5} justifyContent="flex-end">
-                    <Grid item xs={8.8}>
-                        <TextField 
-                            autoFocus
-                            id="outlined-basic" 
-                            label="Write a message..." 
-                            variant="outlined" fullWidth
-                            value = {currentInput}
-                            onKeyDown = {(e) => {
-                                if(e.key === 'Enter'){
-                                    sendClick()
-                                 }
-                            }}
-                            onChange = {(e) => {
-                                setCurrentInput(e.target.value)
-                            }}
-                        />
-                    </Grid>
-                    <Grid item xs={3}>
-                        <Button className = {"sendButton"} variant="contained" endIcon={<SendIcon />} style={{height: '100%'}} onClick={sendClick}>
-                            Send
-                        </Button>
-                    </Grid>
-                </Grid>
-            </Grid>
+        <div className="flex flex-col items-center w-full p-5">
+            <div className="w-[60%] space-y-4">
+                <h1 className="text-2xl font-semibold">{initLine}</h1>
+                
+                <div className="space-y-4">
+                    {dia.map((x) => (
+                        <Bubble key={`${x.name}-${x.text}`} name={x.name} dialogue={x.text} imgURL={x.imgURL} />
+                    ))}
+                </div>
+
+                <div className="flex gap-2">
+                    <Input
+                        autoFocus
+                        placeholder="Write a message..."
+                        value={currentInput}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                                sendClick()
+                            }
+                        }}
+                        onChange={(e) => {
+                            setCurrentInput(e.target.value)
+                        }}
+                        className="flex-1"
+                    />
+                    <Button 
+                        onClick={sendClick}
+                        className="h-10"
+                    >
+                        <Send className="h-4 w-4 mr-2" />
+                        Send
+                    </Button>
+                </div>
+            </div>
         </div>
-        </>
-  )
+    )
 }
