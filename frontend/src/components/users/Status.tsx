@@ -1,21 +1,30 @@
-import { CognitoUserSession } from 'amazon-cognito-identity-js';
-import React, { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { AccountContext } from './Account'
+import { Button } from "@/components/ui/button";
 
 export default function Status() {
-    const [status, setStatus] = useState<Boolean>(false);
-    const { getSession, logout } = useContext(AccountContext)
+    const [status, setStatus] = useState<boolean>(false);
+    const { getSession, logout } = useContext(AccountContext);
 
-    useEffect(()=>{
-        getSession().then((session: CognitoUserSession)=>{
-            console.log("Session", session)
-            setStatus(true)
-        })
-    }, [])
+    useEffect(() => {
+        getSession()
+            .then(() => {
+                setStatus(true);
+            })
+            .catch(() => {
+                setStatus(false);
+            });
+    }, [getSession]);
 
-  return (
-    <div>
-        {status ? <button onClick={logout}>Logout</button> : "Please Login"}
-    </div>
-  )
+    return (
+        <div className="flex items-center justify-center p-4">
+            {status ? (
+                <Button variant="outline" onClick={logout}>
+                    Logout
+                </Button>
+            ) : (
+                <span className="text-muted-foreground">Please Login</span>
+            )}
+        </div>
+    );
 }

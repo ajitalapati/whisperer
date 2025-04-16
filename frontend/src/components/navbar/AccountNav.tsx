@@ -1,7 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { AccountContext } from '../users/Account'
-import { CognitoUserSession } from 'amazon-cognito-identity-js'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -12,15 +11,18 @@ import {
 import { User } from 'lucide-react'
 
 export default function AccountNav() {
-    const [status, setStatus] = useState<Boolean>(false);
-    const { getSession, logout } = useContext(AccountContext)
+    const [status, setStatus] = useState<boolean>(false);
+    const { getSession, logout } = useContext(AccountContext);
 
-    useEffect(()=>{
-        getSession().then((session: CognitoUserSession)=>{
-            setStatus(true)
-        })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    useEffect(() => {
+        getSession()
+            .then(() => {
+                setStatus(true);
+            })
+            .catch(() => {
+                setStatus(false);
+            });
+    }, [getSession]);
 
     const notSignedIn = (
         <Link to="/signin">

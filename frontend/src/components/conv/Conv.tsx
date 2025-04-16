@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react'
+import {useContext, useEffect, useState} from 'react'
 import Bubble from './Bubble'
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";

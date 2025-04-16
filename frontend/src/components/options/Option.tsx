@@ -1,5 +1,4 @@
-import React from 'react'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardTitle, CardDescription } from "@/components/ui/card"
 import { Link } from 'react-router-dom'
 
 export interface OptionProps {
@@ -8,19 +7,19 @@ export interface OptionProps {
     description: string;
 }
 
-export default function Option({name, imgURL, description}: OptionProps) {
+export default function Option({ name, imgURL, description }: OptionProps) {
   return (
     <Link 
-      to={"/".concat(name)} 
-      state={{ conversee: name, user: "Ajit", imgURL: imgURL }} 
+      to={`/${name}`}
+      state={{ conversee: name, imgURL: imgURL }}
       className="no-underline"
     >
-      <Card className="w-[370px] overflow-hidden hover:shadow-lg transition-shadow">
+      <Card className="w-[370px] overflow-hidden hover:shadow-lg transition-shadow duration-200">
         <div className="relative h-[170px] overflow-hidden">
           <img
             src={imgURL}
             alt={name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
           />
         </div>
         <CardContent className="h-[200px] overflow-y-auto p-4">

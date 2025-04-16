@@ -1,6 +1,5 @@
-import * as React from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { constants } from '../../constants';
 import AccountNav from './AccountNav';
 import { Button } from '@/components/ui/button';
 import { Menu, Moon, Sun } from 'lucide-react';
@@ -23,8 +22,8 @@ const navItems: NavItem[] = [
 ];
 
 export default function NavBar() {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const { isDarkMode, toggleDarkMode } = React.useContext(ThemeContext);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
