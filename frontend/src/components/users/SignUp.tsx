@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import cognitoService from '../../services/cognitoService';
 import CustomAlert from './CustomAlert';
@@ -52,23 +52,37 @@ export default function SignUp() {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center">
+        <div className="relative flex min-h-[calc(100vh-4.25rem)] items-center justify-center overflow-hidden px-4 py-12">
+            <div
+                className="pointer-events-none absolute -left-20 top-1/3 h-64 w-64 rounded-full bg-primary/12 blur-3xl dark:bg-primary/18"
+                aria-hidden
+            />
+            <div
+                className="pointer-events-none absolute -right-24 bottom-1/4 h-72 w-72 rounded-full bg-primary/8 blur-3xl"
+                aria-hidden
+            />
+
             {alertList.map((message, index) => (
                 <CustomAlert key={index} message={message} />
             ))}
-            <Card className="w-[400px]">
-                <CardHeader className="space-y-1">
-                    <div className="flex items-center justify-center">
-                        <div className="rounded-full bg-primary p-2">
-                            <Lock className="h-6 w-6 text-primary-foreground" />
+            <Card className="relative w-full max-w-[420px] rounded-sm border-border/80 bg-card/95 shadow-2xl backdrop-blur-sm">
+                <CardHeader className="space-y-4 pb-2">
+                    <div className="flex justify-center">
+                        <div className="flex h-14 w-14 items-center justify-center rounded-sm border border-primary/35 bg-primary/10">
+                            <Lock className="h-6 w-6 text-primary" />
                         </div>
                     </div>
-                    <CardTitle className="text-2xl text-center">Sign up with Project Whisper</CardTitle>
+                    <CardTitle className="text-center font-display text-3xl font-semibold tracking-tight">
+                        Join Whisperer
+                    </CardTitle>
+                    <p className="text-center text-sm text-muted-foreground">
+                        Create an account to save your dialogues.
+                    </p>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="space-y-2">
-                            <Label htmlFor="name">Name</Label>
+                            <Label htmlFor="name" className="text-foreground">Name</Label>
                             <Input
                                 id="name"
                                 name="name"
@@ -76,43 +90,46 @@ export default function SignUp() {
                                 autoComplete="name"
                                 required
                                 autoFocus
+                                className="h-11 rounded-sm border-border/80"
                             />
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="email">Email Address</Label>
+                            <Label htmlFor="email" className="text-foreground">Email address</Label>
                             <Input
                                 id="email"
                                 name="email"
                                 type="email"
                                 autoComplete="email"
                                 required
+                                className="h-11 rounded-sm border-border/80"
                             />
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="password">Password</Label>
+                            <Label htmlFor="password" className="text-foreground">Password</Label>
                             <Input
                                 id="password"
                                 name="password"
                                 type="password"
                                 autoComplete="current-password"
                                 required
+                                className="h-11 rounded-sm border-border/80"
                             />
                         </div>
                         <div className="flex items-center space-x-2">
                             <Checkbox id="remember" />
-                            <Label htmlFor="remember">Remember me</Label>
+                            <Label htmlFor="remember" className="text-sm font-normal text-muted-foreground">Remember me</Label>
                         </div>
-                        <Button type="submit" className="w-full">
-                            Sign Up
+                        <Button type="submit" className="h-11 w-full rounded-sm font-display tracking-wide">
+                            Sign up
                         </Button>
                     </form>
                 </CardContent>
-                <CardFooter className="flex justify-center">
+                <CardFooter className="flex justify-center border-t border-border/60 bg-muted/20 px-6 py-4">
                     <p className="text-sm text-muted-foreground">
                         Already have an account?{' '}
-                        <a href="/signin" className="text-primary hover:underline">
+                        <RouterLink to="/signin" className="font-medium text-primary hover:underline">
                             Sign in
-                        </a>
+                        </RouterLink>
                     </p>
                 </CardFooter>
             </Card>

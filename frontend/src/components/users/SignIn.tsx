@@ -35,56 +35,72 @@ export default function SignIn() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      {alertList.map((message: string) => {
-        return <CustomAlert message={message} />
-      })}
-      <Card className="w-[400px]">
-        <CardHeader className="space-y-1">
-          <div className="flex items-center justify-center">
-            <div className="rounded-full bg-primary p-2">
-              <Lock className="h-6 w-6 text-primary-foreground" />
+    <div className="relative flex min-h-[calc(100vh-4.25rem)] items-center justify-center overflow-hidden px-4 py-12">
+      <div
+        className="pointer-events-none absolute -left-24 top-1/4 h-72 w-72 rounded-full bg-primary/15 blur-3xl dark:bg-primary/20"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -right-16 bottom-1/4 h-56 w-56 rounded-full bg-primary/10 blur-3xl"
+        aria-hidden
+      />
+
+      {alertList.map((message: string, i) => (
+        <CustomAlert key={i} message={message} />
+      ))}
+      <Card className="relative w-full max-w-[420px] rounded-sm border-border/80 bg-card/95 shadow-2xl backdrop-blur-sm">
+        <CardHeader className="space-y-4 pb-2">
+          <div className="flex justify-center">
+            <div className="flex h-14 w-14 items-center justify-center rounded-sm border border-primary/35 bg-primary/10">
+              <Lock className="h-6 w-6 text-primary" />
             </div>
           </div>
-          <CardTitle className="text-2xl text-center">Sign in</CardTitle>
+          <CardTitle className="text-center font-display text-3xl font-semibold tracking-tight">
+            Welcome back
+          </CardTitle>
+          <p className="text-center text-sm text-muted-foreground">
+            Sign in to continue your conversations.
+          </p>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email Address</Label>
+              <Label htmlFor="email" className="text-foreground">Email address</Label>
               <Input
                 id="email"
                 name="email"
                 type="email"
                 autoComplete="email"
                 required
+                className="h-11 rounded-sm border-border/80"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="text-foreground">Password</Label>
               <Input
                 id="password"
                 name="password"
                 type="password"
                 autoComplete="current-password"
                 required
+                className="h-11 rounded-sm border-border/80"
               />
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox id="remember" />
-              <Label htmlFor="remember">Remember me</Label>
+              <Label htmlFor="remember" className="text-sm font-normal text-muted-foreground">Remember me</Label>
             </div>
-            <Button type="submit" className="w-full">
-              Sign In
+            <Button type="submit" className="h-11 w-full rounded-sm font-display tracking-wide">
+              Sign in
             </Button>
           </form>
         </CardContent>
-        <CardFooter className="flex justify-between">
+        <CardFooter className="flex flex-col gap-3 border-t border-border/60 bg-muted/20 px-6 py-4 sm:flex-row sm:justify-between sm:gap-2">
           <RouterLink to="/forgot-password" className="text-sm text-primary hover:underline">
             Forgot password?
           </RouterLink>
           <RouterLink to="/signup" className="text-sm text-primary hover:underline">
-            Don't have an account? Sign Up
+            Create an account
           </RouterLink>
         </CardFooter>
       </Card>

@@ -30,20 +30,30 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
+    <nav className="sticky top-0 z-50 w-full border-b border-border/70 bg-background/90 backdrop-blur-md supports-[backdrop-filter]:bg-background/75">
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent"
+        aria-hidden
+      />
+      <div className="container flex h-[4.25rem] items-center">
         <div className="mr-4 hidden md:flex">
-          <Link to="/" className="mr-6 flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-block">
+          <Link to="/" className="mr-8 flex items-center gap-3 no-underline">
+            <span
+              className="flex h-9 w-9 items-center justify-center rounded-sm border border-primary/35 bg-primary/10 font-display text-lg font-semibold text-primary"
+              aria-hidden
+            >
+              W
+            </span>
+            <span className="font-display text-xl font-semibold tracking-tight text-foreground">
               Whisperer
             </span>
           </Link>
-          <nav className="flex items-center space-x-6 text-sm font-medium">
+          <nav className="flex items-center gap-8 text-[0.95rem]">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.routerUrl}
-                className="transition-colors hover:text-foreground/80 text-foreground/60"
+                className="relative text-muted-foreground transition-colors hover:text-foreground after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
               >
                 {item.name}
               </Link>
@@ -63,7 +73,7 @@ export default function NavBar() {
             variant="ghost"
             size="icon"
             onClick={toggleDarkMode}
-            className="mr-2"
+            className="mr-1 rounded-sm text-muted-foreground hover:bg-accent hover:text-foreground"
           >
             {isDarkMode ? (
               <Sun className="h-5 w-5" />
@@ -76,14 +86,14 @@ export default function NavBar() {
         </div>
       </div>
       {mobileOpen && (
-        <div className="fixed inset-0 top-14 z-50 grid h-[calc(100vh-4rem)] grid-flow-row auto-rows-max overflow-auto p-6 pb-32 shadow-md animate-in slide-in-from-bottom-80 md:hidden">
-          <div className="relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-md">
-            <nav className="grid grid-flow-row auto-rows-max text-sm">
+        <div className="fixed inset-0 top-[4.25rem] z-50 grid h-[calc(100vh-4.25rem)] grid-flow-row auto-rows-max overflow-auto border-t border-border/60 bg-background/95 p-6 pb-32 shadow-inner animate-in slide-in-from-bottom-80 md:hidden">
+          <div className="relative z-20 grid gap-2 rounded-sm border border-border bg-card p-5 text-card-foreground shadow-lg">
+            <nav className="grid grid-flow-row auto-rows-max gap-1 text-base">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.routerUrl}
-                  className="flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline"
+                  className="rounded-sm px-3 py-2.5 font-medium text-foreground transition-colors hover:bg-muted"
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.name}

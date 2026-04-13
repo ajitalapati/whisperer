@@ -25,9 +25,12 @@ export default function AccountNav() {
     }, [getSession]);
 
     const notSignedIn = (
-        <Link to="/signin">
-            <Button variant="ghost">
-                Sign In
+        <Link to="/signin" className="no-underline">
+            <Button
+                variant="outline"
+                className="rounded-sm border-primary/35 font-display text-sm tracking-wide text-foreground hover:bg-primary/10 hover:text-foreground"
+            >
+                Sign in
             </Button>
         </Link>
     );
@@ -35,12 +38,16 @@ export default function AccountNav() {
     const signedIn = (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-9 w-9 rounded-sm border-primary/35 hover:bg-primary/10"
+                >
                     <User className="h-4 w-4" />
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="end" forceMount>
-                <DropdownMenuItem onClick={logout}>
+            <DropdownMenuContent className="w-56 rounded-sm" align="end" forceMount>
+                <DropdownMenuItem onClick={logout} className="cursor-pointer">
                     Log out
                 </DropdownMenuItem>
             </DropdownMenuContent>

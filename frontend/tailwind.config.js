@@ -16,6 +16,10 @@ module.exports = {
   		}
   	},
   	extend: {
+  		fontFamily: {
+  			display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+  			body: ['"EB Garamond"', 'Georgia', 'serif'],
+  		},
   		colors: {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
@@ -79,11 +83,32 @@ module.exports = {
   				to: {
   					height: 0
   				}
+  			},
+  			'fade-up': {
+  				from: {
+  					opacity: '0',
+  					transform: 'translateY(1.25rem)'
+  				},
+  				to: {
+  					opacity: '1',
+  					transform: 'translateY(0)'
+  				}
+  			},
+  			'fade-in': {
+  				from: { opacity: '0' },
+  				to: { opacity: '1' }
+  			},
+  			shimmer: {
+  				'0%': { backgroundPosition: '-200% 0' },
+  				'100%': { backgroundPosition: '200% 0' }
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			'fade-up': 'fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+  			'fade-in': 'fade-in 0.6s ease-out forwards',
+  			shimmer: 'shimmer 2.5s ease-in-out infinite'
   		}
   	}
   },

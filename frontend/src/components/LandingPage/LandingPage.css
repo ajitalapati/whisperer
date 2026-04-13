@@ -1,12 +1,108 @@
-.landingOverlay{
-   background-color: rgba(0, 0, 0, 0.64);
-   width: 100%;
-   height: 100%;
-   position: absolute;
-   z-index: 10;
+.landing-hero-overlay {
+  background:
+    linear-gradient(
+      115deg,
+      hsl(var(--background) / 0.92) 0%,
+      hsl(var(--background) / 0.45) 38%,
+      hsl(222 42% 8% / 0.55) 100%
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 20% 0%,
+      hsl(var(--primary) / 0.18) 0%,
+      transparent 55%
+    );
 }
-.centerText{
-   width: 100%;
-   height: 100%;
-   justify-content: center;
+
+.dark .landing-hero-overlay {
+  background:
+    linear-gradient(
+      115deg,
+      hsl(222 42% 6% / 0.88) 0%,
+      hsl(222 38% 10% / 0.5) 42%,
+      hsl(222 45% 4% / 0.75) 100%
+    ),
+    radial-gradient(
+      ellipse 100% 70% at 80% 10%,
+      hsl(var(--primary) / 0.12) 0%,
+      transparent 50%
+    );
+}
+
+.landing-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.dark .landing-grain {
+  mix-blend-mode: overlay;
+  opacity: 0.12;
+}
+
+.landing-reveal {
+  opacity: 0;
+  animation: landing-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.landing-reveal-delay-1 {
+  animation-delay: 0.12s;
+}
+
+.landing-reveal-delay-2 {
+  animation-delay: 0.24s;
+}
+
+.landing-reveal-delay-3 {
+  animation-delay: 0.36s;
+}
+
+.landing-reveal-delay-4 {
+  animation-delay: 0.48s;
+}
+
+@keyframes landing-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.landing-figure-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow:
+    0 1px 0 hsl(var(--border)),
+    0 18px 40px -24px hsl(222 40% 8% / 0.35);
+}
+
+.dark .landing-figure-card {
+  box-shadow:
+    0 1px 0 hsl(var(--border)),
+    0 22px 50px -20px hsl(0 0% 0% / 0.55);
+}
+
+.landing-figure-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid hsl(var(--primary) / 0.25);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.landing-figure-card img {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease;
+}
+
+.landing-figure-card:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.05) contrast(1.02);
 }

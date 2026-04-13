@@ -24,7 +24,6 @@ export default function Conv() {
     const [user, setUser] = useState<string>("a modern day person");
     const [dia, setDia] = useState<ConvBubble[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const messagesEndRef = useRef<HTMLDivElement>(null);
     const messagesContainerRef = useRef<HTMLDivElement>(null);
     const { getSession } = useContext(AccountContext)
 
@@ -35,17 +34,13 @@ export default function Conv() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    // Auto-scroll to bottom when new messages arrive
     useEffect(() => {
         if (messagesContainerRef.current) {
             messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
         }
     }, [dia]);
 
-    const initLine: string = `The following is a conversation between ${user} and ${conversee}.`
-
     const sendClick = async () => {
-        //send through string data from input
         const newUserInput = {
             name: user,
             text: currentInput,
@@ -76,68 +71,81 @@ export default function Conv() {
     }
 
     return (
-        <div className="flex flex-col items-center w-full min-h-screen p-4 md:p-6">
-            <Card className="w-full max-w-4xl max-h-[90vh] space-y-6 p-6">
-                <div className="text-center space-y-2">
-                    <h1 className="text-2xl font-semibold text-foreground">{initLine}</h1>
+        <div className="relative flex min-h-full w-full flex-col items-center px-3 py-6 sm:px-6">
+            <div
+                className="pointer-events-none absolute left-1/2 top-0 h-48 w-[min(100%,48rem)] -translate-x-1/2 bg-primary/5 blur-3xl dark:bg-primary/10"
+                aria-hidden
+            />
+            <Card className="relative w-full max-w-4xl border-border/80 bg-card/95 shadow-2xl backdrop-blur-sm dark:bg-card/90">
+                <div className="border-b border-border/60 bg-gradient-to-br from-muted/50 to-transparent px-5 py-6 text-center sm:px-8">
+                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-primary">
+                        In conversation
+                    </p>
+                    <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                        {conversee}
+                    </h1>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                        Speaking with <span className="text-foreground/90">{user}</span>
+                    </p>
                 </div>
-                
-                <div 
-                    ref={messagesContainerRef}
-                    className="space-y-4 h-[70vh] overflow-y-auto pr-4 scrollbar-hide"
-                >
-                    {dia.map((x) => (
-                        <Bubble 
-                            key={`${x.name}-${x.text}-${x.timestamp?.getTime()}`} 
-                            name={x.name} 
-                            dialogue={x.text} 
-                            imgURL={x.imgURL}
-                            timestamp={x.timestamp}
-                        />
-                    ))}
-                    {isLoading && (
-                        <div className="flex items-start space-x-4 p-4">
-                            <div className="h-10 w-10 rounded-full border-2 border-primary/20 overflow-hidden">
-                                <img src={imgURL} alt={conversee} className="h-full w-full object-cover" />
-                            </div>
-                            <div className="flex-1 space-y-2">
-                                <p className="text-sm font-medium leading-none text-primary">{conversee}</p>
-                                <div className="bg-muted/50 p-3 rounded-lg rounded-tl-none">
-                                    <div className="flex space-x-2">
-                                        <div className="h-2 w-2 bg-primary/50 rounded-full animate-pulse" style={{ animationDelay: '0ms' }}></div>
-                                        <div className="h-2 w-2 bg-primary/50 rounded-full animate-pulse" style={{ animationDelay: '200ms' }}></div>
-                                        <div className="h-2 w-2 bg-primary/50 rounded-full animate-pulse" style={{ animationDelay: '400ms' }}></div>
+
+                <div className="space-y-0 px-2 pb-4 pt-2 sm:px-4">
+                    <div
+                        ref={messagesContainerRef}
+                        className="h-[min(70vh,36rem)] space-y-1 overflow-y-auto rounded-sm border border-border/40 bg-muted/20 px-1 py-3 dark:bg-muted/10"
+                    >
+                        {dia.map((x) => (
+                            <Bubble
+                                key={`${x.name}-${x.text}-${x.timestamp?.getTime()}`}
+                                name={x.name}
+                                dialogue={x.text}
+                                imgURL={x.imgURL}
+                                timestamp={x.timestamp}
+                                isUser={x.name === user}
+                            />
+                        ))}
+                        {isLoading && (
+                            <div className="flex items-start gap-3 px-3 py-3 sm:gap-4 sm:px-4">
+                                <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-primary/30 ring-2 ring-primary/10 sm:h-11 sm:w-11">
+                                    <img src={imgURL} alt="" className="h-full w-full object-cover" />
+                                </div>
+                                <div className="min-w-0 flex-1 space-y-2 pt-0.5">
+                                    <p className="text-sm font-semibold text-primary">{conversee}</p>
+                                    <div className="inline-flex items-center gap-1.5 rounded-sm border border-border/60 bg-muted/50 px-4 py-3 dark:bg-muted/30">
+                                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary/70" style={{ animationDelay: '0ms' }} />
+                                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary/70" style={{ animationDelay: '200ms' }} />
+                                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary/70" style={{ animationDelay: '400ms' }} />
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    )}
-                </div>
+                        )}
+                    </div>
 
-                <div className="flex gap-2 mt-4">
-                    <Input
-                        autoFocus
-                        placeholder="Write your message..."
-                        value={currentInput}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter') {
-                                sendClick()
-                            }
-                        }}
-                        onChange={(e) => {
-                            setCurrentInput(e.target.value)
-                        }}
-                        className="flex-1 h-12 text-base"
-                        disabled={isLoading}
-                    />
-                    <Button 
-                        onClick={sendClick}
-                        className="h-12 px-6"
-                        disabled={!currentInput.trim() || isLoading}
-                    >
-                        <Send className="h-4 w-4 mr-2" />
-                        Send
-                    </Button>
+                    <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:gap-3">
+                        <Input
+                            autoFocus
+                            placeholder="Write your message…"
+                            value={currentInput}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    sendClick()
+                                }
+                            }}
+                            onChange={(e) => {
+                                setCurrentInput(e.target.value)
+                            }}
+                            className="h-12 flex-1 rounded-sm border-border/80 bg-background font-body text-base"
+                            disabled={isLoading}
+                        />
+                        <Button
+                            onClick={sendClick}
+                            className="h-12 shrink-0 rounded-sm px-8 font-display tracking-wide"
+                            disabled={!currentInput.trim() || isLoading}
+                        >
+                            <Send className="mr-2 h-4 w-4" />
+                            Send
+                        </Button>
+                    </div>
                 </div>
             </Card>
         </div>
